@@ -1,0 +1,26 @@
+body{
+    background: #e9ebf1;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f1f0f0, #d9deec);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffffffec, #dfe5ff42); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+    /* NAVBAR LOGO */
+  .navbar-brand{
+  background: #48cae4;
+  padding: 5px;
+  border-radius: 3px;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  /* Scroll bar after specific height [index.html] */
+  .scrollit {
+    overflow-y:scroll;
+    height:110vh;
+    margin: 0;
+    padding: 0;
+}
+  ::-webkit-scrollbar {
+    display: none;
+}

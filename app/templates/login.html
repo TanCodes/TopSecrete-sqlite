@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+  {% block content %}
+      <!-- body -->
+      <div class="bg-light text-secondary px-2 py-3 mt-1" style="background-blend-mode: overlay; background-image: url('https://images.unsplash.com/photo-1614064548237-096f735f344f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-repeat: no-repeat;background-attachment: fixed; background-size: cover;" id="about">
+        <h1 class=" text-center"> 
+          <span class="display-6 fw-bold text-dark">Your passwords are Safe with US!</span> 🔑
+        </h1>
+        <h5 class="text-center text-primary">Secured place for storing Passwords</h5>
+    
+        <div class="col-lg-8 mx-auto">
+          <p class="fs-5 mt-3">
+            Do you keep forgetting your passwords? Then you are at the right place. We hash and save your
+             passwords so that whenever you will forgot the password you can check that particular password here.
+          </p>
+          <hr>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mx-auto shadow mt-4">
+        
+        <div class="alert alert-info fw-bolder">
+         Already an User ?
+        </div>
+        
+        <div class="p-4">
+          <form action="/login" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address*</label>
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            </div>
+
+            <hr>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">LOG IN</button>
+            </div>
+            </form>
+            <p class="text-center mt-3">
+              <img src="https://c.tenor.com/5zNA2C94itMAAAAS/kitty-join-us.gif" width="55" alt=""> <br>
+              Not a Member? <a class="text-warning fw-bold" href="/signup">SignUp</a>
+            </p>
+        </div>
+  
+      </div>
+  {% endblock %}

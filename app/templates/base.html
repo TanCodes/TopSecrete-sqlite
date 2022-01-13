@@ -1,0 +1,76 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/favicon.ico' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/android-chrome-192x192.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/android-chrome-512x512.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/apple-touch-icon.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/favicon-16x16.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon_io/favicon-32x32.png' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+    <title>TopSecret | Place for storing Passwords</title>
+  </head>
+  <body>
+     <!-- nav start -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a style="color: #023047;" class="navbar-brand" href="#">🔒 TopSecret</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+              {% if request.user.is_authenticated %}
+              <li class="nav-item text-warning">
+                <a class="nav-link text-warning fw-bold" href="/logout"><u>LogOut</u></a>
+              </li>
+
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link text-warning fw-bold " href="/login"><u>Login</u></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-warning fw-bold" href="/signup"><u>SignUp</u> </a>
+              </li>
+              {% endif %}
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- Repeated content -->
+    <div>
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+  <footer class="my-4 pt-5 text-muted text-center text-small">
+    <p class="mb-1">
+      &copy; 2021 <strong>TopSecret</strong>
+    </p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href = "{% url 'details' %}#privacy">Privacy</a></li>
+      <li class="list-inline-item"><a href = "{% url 'details' %}#how_to_use">How to use</a></li>
+      <li class="list-inline-item"><a href = "{% url 'details' %}#contact">Contact</a></li>
+    </ul>
+  </footer>
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    </body>
+  </html>
+  

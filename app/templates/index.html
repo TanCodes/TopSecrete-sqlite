@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+  {% block content %}
+<style>
+
+</style>
+
+  <div>
+    <div class="container pt-3">
+      <div class="row  p-0">
+
+        <!-- TOPSECRET FORM (LEFT COL) -->
+        <div class="col-lg-4 mx-auto shadow p-0">
+
+          <div class="alert alert-info text-center">
+            <small class="text-muted"> Last LoggedIn : <strong>{{last_login}}</strong> </small>
+            <hr>
+            <h4>Add New TopSecret</h4>
+          </div>
+          
+          <div class="p-3" >
+            <form action="/add-TopSecret/" method="POST">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <hr>
+              <div class="text-center">
+                <input type="submit" class="btn btn-outline-success" value="ADD">
+                <div class="text-center mt-2">
+                  <img src="https://images.ctfassets.net/l3l0sjr15nav/6oNs9pKBWwOe46eSey20Qc/b69d9cc64685f8fc64d7e3de5f0846f7/giphy__1_.gif" width="180" alt="">
+              </div>
+            </div>
+            </form>
+          </div>
+      
+        </div>
+
+        <!-- TOPSECRET (RIGHT COL) SHOW PASSWORD -->
+        <div class="col">
+          <div >
+            {% if TopSecrets|length == 0 %}
+
+            <div class="p-4">
+              <br>
+              <br>
+              <div class="alert alert-warning text-center">
+                <h5 class="fw-bolder">Hello,<strong> {{user}} </strong>nothing to show here</h5>
+                Add some TopSecrets to your list!
+              </div>
+              <div class="text-center">
+                <img src="https://c.tenor.com/iE93Am2c4LEAAAAd/hogans-heroes-sergeant-schultz.gif" width="400" alt="">
+              </di>
+            </div>
+
+            {% else %}
+            <div class="text-center mt-3">
+              <h6> <strong> {{user}} </strong>, your Passwords are now TopSecrets! 😎</h6>
+              <hr>
+            </div>
+            <div class="scrollit">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    {% for TopSecret in TopSecrets %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{TopSecret.title}}</td>
+                      <td>{{TopSecret.username}}</td>
+                      <td> 
+                        <input type="text" id="clipboardExample1" class="form-control" value="{{TopSecret.password}}" style="width: 150px;" readonly>
+                        <!-- <button type="button" class="btn btn-info btn-clipboard" data-clipboard-action="copy" 
+                        data-clipboard-target="#clipboardExample1">Copy</button>  -->
+                      </td>
+                      <td>{{TopSecret.message}}</td>
+                      <td><a href="/delete-TopSecret/{{TopSecret.id}}" title="Delete">🗑️</a></td>
+                    </tr>
+                    {% endfor %}
+                  
+                </tbody>
+            </div>
+            </table>
+
+           </div>
+
+          
+             {% endif %}
+          </div>
+        </div>
+
+      </div>
+   
+    </div>
+
+     <!-- DECRYPT COL -->
+    {% if TopSecrets|length > 0 %}
+    
+    <div class="container mt-3">
+      
+      <div class="row">
+        <div class="col">
+        </div>
+          <!-- DECRYPT THE PASSWORD SECTION -->
+        <div class="col-5">
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                 Decrypt the password
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+
+                  <form action="/encoded_password/" method="POST">
+                    {% csrf_token %}
+                  <div class="input-group mb-3">
+                    <input name="name_plain_password" type="text" class="form-control" placeholder="Paste the copied hashed password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button  class="btn btn-outline-secondary" type="submit" >Hash IT</button>
+                    </div>
+                    {{final_decoded}}
+
+                  </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-secondary text-center" role="alert">
+                  {{message}}
+              </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+       
+        <div class="col">
+        </div>
+      </div>
+
+    </div>
+
+    {% endif %}
+  </div>
+
+  <script type="text/javascript">
+    function reveal()
+    {
+    if(document.getElementById('box').checked)
+       {document.getElementById("pw").type='text';}
+    else
+    document.getElementById("pw").type='password';
+    }
+
+    $( document ).ready(function() {
+
+    new ClipboardJS('.btn');
+
+    });
+    </script>   
+    
+  {% endblock %}
