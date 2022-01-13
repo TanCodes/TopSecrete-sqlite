@@ -79,8 +79,6 @@
                       <td>{{TopSecret.username}}</td>
                       <td> 
                         <input type="text" id="clipboardExample1" class="form-control" value="{{TopSecret.password}}" style="width: 150px;" readonly>
-                        <!-- <button type="button" class="btn btn-info btn-clipboard" data-clipboard-action="copy" 
-                        data-clipboard-target="#clipboardExample1">Copy</button>  -->
                       </td>
                       <td>{{TopSecret.message}}</td>
                       <td><a href="/delete-TopSecret/{{TopSecret.id}}" title="Delete">🗑️</a></td>
@@ -155,21 +153,5 @@
 
     {% endif %}
   </div>
-
-  <script type="text/javascript">
-    function reveal()
-    {
-    if(document.getElementById('box').checked)
-       {document.getElementById("pw").type='text';}
-    else
-    document.getElementById("pw").type='password';
-    }
-
-    $( document ).ready(function() {
-
-    new ClipboardJS('.btn');
-
-    });
-    </script>   
     
   {% endblock %}

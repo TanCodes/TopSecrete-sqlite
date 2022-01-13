@@ -1,9 +1,6 @@
 """
 Django settings for topsecret project.
 
-user : tanmay
-passs : tanmaybarvi20
-
 """
 
 from pathlib import Path
@@ -12,7 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-cqimdw=4()bpz$o_x$xqm28vq9_2w-v0aru5^rq@n+da$-!a#y"
+SECRET_KEY = "Your_Provided_Key"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -130,6 +127,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "tancodes21@gmail.com"
-EMAIL_HOST_PASSWORD = "TanCodes@21"
+EMAIL_HOST_USER = "Host_user_Email"
+EMAIL_HOST_PASSWORD = "Host_Password"
 EMAIL_PORT = 587
